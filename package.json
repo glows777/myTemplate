@@ -5,7 +5,16 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "format": "prettier --write \"src/**/*.js\" \"src/**/*.vue\"",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "src/**/*.{js,json,css,vue}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ]
   },
   "dependencies": {
     "axios": "^0.27.2",
@@ -17,7 +26,13 @@
     "@commitlint/cli": "^16.2.4",
     "@commitlint/config-conventional": "^16.2.4",
     "@vitejs/plugin-vue": "^2.3.1",
+    "eslint": "^8.15.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^7.0.0-beta.4",
     "husky": "^7.0.4",
+    "lint-staged": "^12.4.1",
+    "prettier": "^2.6.2",
     "typescript": "^4.5.4",
     "vite": "^2.9.7",
     "vue-tsc": "^0.34.7"
