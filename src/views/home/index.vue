@@ -6,9 +6,27 @@ console.log('hello world');
 </script>
 
 <template>
+  <div class="dad">
+    dad
+    <div class="son">son</div>
+  </div>
   <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <el-button type="primary">Primary</el-button>
+  <el-calendar>
+    <template #dateCell="{ data }">
+      <p :class="data.isSelected ? 'is-selected' : ''">
+        {{ data.day.split('-').slice(1).join('-') }}
+        {{ data.isSelected ? '✔️' : '' }}
+      </p>
+    </template>
+  </el-calendar>
 </template>
 
-<style>
-
+<style lang="scss">
+.dad {
+  color: red;
+  .son {
+    color: blue;
+  }
+}
 </style>
