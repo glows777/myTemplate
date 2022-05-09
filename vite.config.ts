@@ -40,5 +40,17 @@ export default defineConfig({
         additionalData: '@import "@/assets/css/global.scss";'
       }
     }
-  }
+  },
+  server: {
+    port: 3000,
+    proxy: {
+      "/api": {
+        // 以/api开头的接口都代理到target指定的域名下
+        target: "http://localhost:8888",
+        changeOrigin: true,
+        // 代替，后端的接口没有/api前缀，而前端有，所以要替换掉
+        // rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
 });

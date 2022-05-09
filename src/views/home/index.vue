@@ -1,8 +1,13 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
+import { useRouter } from 'vue-router';
 import HelloWorld from '../../components/HelloWorld.vue';
 console.log('hello world');
+const router = useRouter();
+const toCounter = () => {
+  router.push('/counter');
+}
 </script>
 
 <template>
@@ -11,15 +16,7 @@ console.log('hello world');
     <div class="son">son</div>
   </div>
   <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
-  <el-button type="primary">Primary</el-button>
-  <el-calendar>
-    <template #dateCell="{ data }">
-      <p :class="data.isSelected ? 'is-selected' : ''">
-        {{ data.day.split('-').slice(1).join('-') }}
-        {{ data.isSelected ? '✔️' : '' }}
-      </p>
-    </template>
-  </el-calendar>
+  <el-button type="primary" @click="toCounter">toCounter</el-button>
 </template>
 
 <style lang="scss">
