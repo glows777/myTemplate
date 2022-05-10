@@ -14,9 +14,12 @@ export default defineConfig({
   plugins: [
     vue(),
     AutoImport({
+      imports: ['vue', 'vue-router'],
       resolvers: [ElementPlusResolver()]
     }),
     Components({
+      // 默认开启搜索子目录
+      dirs: ['src/components', 'src/views/*/components'],
       resolvers: [ElementPlusResolver()]
     })
   ],

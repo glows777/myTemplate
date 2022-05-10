@@ -4,7 +4,6 @@
  *
  */
 import { useCounterStore } from '@/stores/counter';
-import { computed } from 'vue';
 const counterStore = useCounterStore();
 let counterPlusOne = computed(() => counterStore.counterPlusOne);
 let actionCounterPlusOne = () => counterStore.increment();
@@ -38,4 +37,5 @@ const getList = () => {
   <el-button @click="actionCounterPlusOne">+</el-button>
   <h4>counter: {{ counterStore.counter }}</h4>
   <el-button @click="randomizeCounter">randomize</el-button>
+  <test msg="this is a test"></test>
 </template>
