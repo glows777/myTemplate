@@ -1,11 +1,12 @@
+// 处理请求错误
+
 import axios from 'axios';
-import { ElMessage } from 'element-plus';
 
 /**
  * 处理异常
  * @param {*} error
  */
-export function httpErrorStatusHandle(error) {
+function httpErrorStatusHandle(error) {
   // 处理被取消的请求
   if (axios.isCancel(error)) return console.error('请求的重复请求：' + error.message);
   let message = '';
@@ -64,3 +65,5 @@ export function httpErrorStatusHandle(error) {
     message
   });
 }
+
+export default { httpErrorStatusHandle };

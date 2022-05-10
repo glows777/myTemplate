@@ -1,14 +1,8 @@
 import axios from 'axios';
-import { ElLoading, ElMessage } from 'element-plus';
-// import {getTokenAUTH} from '@/utils/auth';
-import { addPending, removePending } from './cancelRepeatRequest';
-import { httpErrorStatusHandle } from './error';
-import { closeLoading, LoadingInstance } from './loading';
-
-// const LoadingInstance = {
-//   _target: null,
-//   _count: 0
-// };
+// import {getTokenAUTH} from '@/common/js/utils/auth';
+import cancel from './cancel';
+import errorHandle from './error';
+import loading from './loading';
 
 function myAxios(axiosConfig, customOptions, loadingOptions) {
   const service = axios.create({
@@ -31,13 +25,13 @@ function myAxios(axiosConfig, customOptions, loadingOptions) {
   // 请求拦截
   service.interceptors.request.use(
     (config) => {
-      removePending(config);
-      custom_options.repeat_request_cancel && addPending(config);
+      cancel.removePending(config);
+      custom_options.repeat_request_cancel && cancel.addPending(config);
       // 创建loading实例
       if (custom_options.loading) {
-        LoadingInstance._count++;
-        if (LoadingInstance._count === 1) {
-          LoadingInstance._target = ElLoading.service(loadingOptions);
+        loading.LoadingInstance._count++;
+        if (loading.LoadingInstance._count === 1) {
+          loading.LoadingInstance._target = ElLoading.service(loadingOptions);
         }
       }
       // 自动携带token
@@ -55,8 +49,8 @@ function myAxios(axiosConfig, customOptions, loadingOptions) {
   // 响应拦截
   service.interceptors.response.use(
     (response) => {
-      removePending(response.config);
-      custom_options.loading && closeLoading(custom_options); // 关闭loading
+      cancel.removePending(response.config);
+      custom_options.loading && loading.closeLoading(custom_options); // 关闭loading
 
       if (custom_options.code_message_show && response.data && response.data.code !== 0) {
         ElMessage({
@@ -69,9 +63,9 @@ function myAxios(axiosConfig, customOptions, loadingOptions) {
       return custom_options.reduct_data_format ? response.data : response;
     },
     (error) => {
-      error.config && removePending(error.config);
-      custom_options.loading && closeLoading(custom_options); // 关闭loading
-      custom_options.error_message_show && httpErrorStatusHandle(error); // 处理错误状态码
+      error.config && cancel.removePending(error.config);
+      custom_options.loading && loading.closeLoading(custom_options); // 关闭loading
+      custom_options.error_message_show && errorHandle.httpErrorStatusHandle(error); // 处理错误状态码
       return Promise.reject(error); // 错误继续返回给到具体页面
     }
   );
@@ -81,14 +75,4 @@ function myAxios(axiosConfig, customOptions, loadingOptions) {
 
 export default myAxios;
 
-// /**
-//  * 关闭Loading层实例
-//  * @param {*} _options
-//  */
-// function closeLoading(_options) {
-//   if (_options.loading && LoadingInstance._count > 0) LoadingInstance._count--;
-//   if (LoadingInstance._count === 0) {
-//     LoadingInstance._target.close();
-//     LoadingInstance._target = null;
-//   }
-// }
+

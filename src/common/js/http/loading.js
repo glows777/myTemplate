@@ -1,3 +1,6 @@
+
+// 是否开启loading效果
+
 const LoadingInstance = {
   _target: null,
   _count: 0
@@ -15,4 +18,4 @@ function closeLoading(_options) {
   }
 }
 
-export { LoadingInstance, closeLoading };
+export default{ LoadingInstance, closeLoading };

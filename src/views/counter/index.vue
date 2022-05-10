@@ -33,10 +33,9 @@ const getList = () => {
 </script>
 <template>
   <el-button @click="getList">test</el-button>
-  <h1>HelloWorld</h1>
   <h2>double: {{ counterStore.doubleCounter }}</h2>
   <h3>counterPlusOne: {{ counterPlusOne }}</h3>
-  <button @click="actionCounterPlusOne">+</button>
+  <el-button @click="actionCounterPlusOne">+</el-button>
   <h4>counter: {{ counterStore.counter }}</h4>
-  <button @click="randomizeCounter">randomize</button>
+  <el-button @click="randomizeCounter">randomize</el-button>
 </template>

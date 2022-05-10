@@ -1,4 +1,6 @@
-import axios from "axios";
+// 处理重复请求的情况，用map去存需要发出请求的请求，然后判断map是否包含给请求（是否有重复请求），如果有重复请求，则取消重复请求，没有就加入map
+
+import axios from 'axios';
 const pendingMap = new Map();
 
 /**
@@ -41,5 +43,4 @@ function getPendingKey(config) {
   return [url, method, JSON.stringify(params), JSON.stringify(data)].join('&');
 }
 
-export { addPending, removePending };
-
+export default { addPending, removePending };
