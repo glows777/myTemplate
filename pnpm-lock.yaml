@@ -20,6 +20,7 @@ specifiers:
   unplugin-vue-components: ^0.19.3
   vite: ^2.9.7
   vue: ^3.2.25
+  vue-global-api: ^0.4.1
   vue-router: ^4.0.15
   vue-tsc: ^0.34.7
 
@@ -46,6 +47,7 @@ devDependencies:
   unplugin-auto-import: 0.7.1_vite@2.9.8
   unplugin-vue-components: 0.19.3_vite@2.9.8+vue@3.2.33
   vite: 2.9.8_sass@1.51.0
+  vue-global-api: 0.4.1_vue@3.2.33
   vue-tsc: 0.34.11_typescript@4.6.4
 
 packages:
@@ -1269,6 +1271,10 @@ packages:
       eslint: '>=7.0.0'
     dependencies:
       eslint: 8.15.0
+    dev: true
+
+  /eslint-config-vue-global-api/0.4.1:
+    resolution: {integrity: sha512-mJTiKBGLe1FXmEifYzCQzUTBpFv8OtfYzP6PAOuVRf+3hkGLMeiDh4bVzZEaJfdExtc8mPw9vp35YSLhwTselQ==}
     dev: true
 
   /eslint-plugin-prettier/4.0.0_440b30a60bbe5bb6e3ad0057150b2782:
@@ -2875,7 +2881,6 @@ packages:
         optional: true
     dependencies:
       vue: 3.2.33
-    dev: false
 
   /vue-eslint-parser/7.11.0_eslint@8.15.0:
     resolution: {integrity: sha512-qh3VhDLeh773wjgNTl7ss0VejY9bMMa0GoDG2fQVyDzRFdiU3L7fw74tWZDHNQXdZqxO3EveQroa9ct39D2nqg==}
@@ -2893,6 +2898,16 @@ packages:
       semver: 6.3.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /vue-global-api/0.4.1_vue@3.2.33:
+    resolution: {integrity: sha512-283vpYOhVHJCpMkjNVEwZdgaAb+Y93zFaXGAWTI378MLoNuwQydjD/BAy1e81QYEmyA+JbxqcmMZVWcM9rbriw==}
+    dependencies:
+      eslint-config-vue-global-api: 0.4.1
+      vue-demi: 0.12.5_vue@3.2.33
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
     dev: true
 
   /vue-router/4.0.15_vue@3.2.33:

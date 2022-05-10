@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['plugin:vue/strongly-recommended', 'plugin:prettier/recommended'],
+  extends: ['plugin:vue/strongly-recommended', 'plugin:prettier/recommended', 'vue-global-api'],
   // add your custom rules here
   rules: {
     // ...other codes
