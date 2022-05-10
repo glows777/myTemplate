@@ -4,5 +4,4 @@ declare global {
   const ElLoading: typeof import('element-plus/es')['ElLoading']
   const ElMessage: typeof import('element-plus/es')['ElMessage']
 }
-export { }
-
+export {}

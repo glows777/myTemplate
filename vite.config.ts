@@ -49,7 +49,7 @@ export default defineConfig({
         target: "http://localhost:8888",
         changeOrigin: true,
         // 代替，后端的接口没有/api前缀，而前端有，所以要替换掉
-        // rewrite: (path) => path.replace(/^\/api/, ""),
+        rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
   },
