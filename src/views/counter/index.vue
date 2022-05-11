@@ -37,5 +37,5 @@ const getList = () => {
   <el-button @click="actionCounterPlusOne">+</el-button>
   <h4>counter: {{ counterStore.counter }}</h4>
   <el-button @click="randomizeCounter">randomize</el-button>
-  <test msg="this is a test"></test>
+  <test></test>
 </template>
