@@ -28,26 +28,37 @@ export function debounce(func, wait = 500, immediate = false) {
 }
 
 /**
- * @description 节流
+ * @description 节流,如果需要指定为定时器版本，则需要把wait也传入(要么不传，要么全部传)
  * @param { function } func
  * @param { number } wait 延迟执行毫秒数,默认1000毫秒
+ * @param { number } type 节流的类型，1是时间戳版本，2是定时器版本
  * @returns { function }
  */
-export function throttle(func, wait = 1000) {
-  let timer = null;
-  let startTime = Date.now();
+export function throttle(func, wait = 1000, type = 1) {
+  let startTime;
+  let timer;
+  if (type === 1) {
+    startTime = Date.now();
+  } else if (type === 2) {
+    timer = null;
+  }
   return function () {
     let context = this;
     let args = arguments;
-    let curTime = Date.now();
-    let remaining = wait - (curTime - startTime); // 剩余时间
-    clearTimeout(timer);
-    if (remaining <= 0) {
-      func.apply(context, args);
-      startTime = curTime;
-    } else {
-        // 重新设置定时器，时长为remaining
-        timer = setTimeout(func, remaining);
+    if (type === 1) {
+      let curTime = Date.now();
+      let remaining = wait - (curTime - startTime); // 剩余时间
+      if (remaining <= 0) {
+        func.apply(context, args);
+        startTime = curTime;
+      }
+    } else if (type === 2) {
+      if (!timer) {
+        timer = setTimeout(() => {
+          func.apply(context, args);
+          timer = null;
+        }, wait);
+      }
     }
   };
 }
